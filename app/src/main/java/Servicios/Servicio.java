@@ -2,6 +2,9 @@ package Servicios;
 
 import java.util.ArrayList;
 
+import gatoEncerradoDom.GatoEncerradoModel;
+import gatoEncerradoDom.Inventario;
+import gatoEncerradoDom.Item;
 import gatoEncerradoDom.Laberinto;
 
 /**
@@ -12,17 +15,26 @@ public class Servicio {
 
     private ArrayList<Laberinto> listLaberinto;
 
-    private Laberinto laberinto;
+    private Laberinto labActual;
+
+    private Inventario inventario;
 
     public Servicio(ArrayList<Laberinto> listLab) {
         this.listLaberinto = listLab;
     }
 
-    public Servicio() {
+    public Servicio(final Inventario inv){
+        inventario = inv;
     }
 
     public Servicio(final Laberinto lab) {
-        this.laberinto = lab;
+        this.labActual = lab;
+    }
+
+    public Servicio(GatoEncerradoModel sistema){
+        this.listLaberinto = sistema.getListaLaberintos();
+        this.labActual = sistema.getLaberintoActual();
+        this.inventario = sistema.getJugadorActual().getInventario();
     }
 
     public ArrayList<LaberintoMinimizado> listaDeLaberintosMinimizados() {
@@ -42,5 +54,29 @@ public class Servicio {
         }
         return res;
     }
+
+    public DetalleLaberinto detallesDelLaberinto(){
+        DetalleLaberinto res = new DetalleLaberinto();
+        res.setNombreLaberinto(this.labActual.getNombreLaberinto());
+        res.setPath(this.labActual.getRutaImagen());
+        res.setDescripcion(this.labActual.getDescripcion());
+        return res;
+
+    }
+
+    public ArrayList<ItemDelInventarioMinimizado> listaDeItems(){
+        ArrayList<ItemDelInventarioMinimizado> res = new ArrayList<ItemDelInventarioMinimizado>();
+        for(Item inv : this.inventario.getItems()){
+            ItemDelInventarioMinimizado mini = new ItemDelInventarioMinimizado();
+            String idString = inv.getId().toString();
+            mini.setIdItem(idString);
+            mini.setNombreItem(inv.getNombre());
+            mini.setDescripcionItem(inv.getDescripcion());
+            res.add(mini);
+        }
+
+        return res;
+    }
+
 
 }
