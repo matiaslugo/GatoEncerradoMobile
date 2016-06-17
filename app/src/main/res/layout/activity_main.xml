@@ -15,6 +15,16 @@
         android:layout_height="wrap_content">
     </ListView>
 
+    <Button
+        android:id="@+id/botonGestionarInventario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gestionar Inventario"
+        android:layout_alignParentBottom="true"
+        android:background="#368724"
+        android:textColor="#ffffff">
+    </Button>
+
 
 
 </RelativeLayout>
