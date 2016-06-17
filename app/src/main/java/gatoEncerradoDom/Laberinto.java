@@ -17,7 +17,7 @@ public class Laberinto {
 
     private String descripcion;
 
-    public Laberinto(final String nombreLab, final Integer numeroLaberinto) {
+    public Laberinto(String nombreLab, Integer numeroLaberinto) {
         this.id = numeroLaberinto;
         this.nombreLaberinto = nombreLab;
         this.descripcion = id.toString() + "this.nombreLaberinto" + "this.rutaImagen";
@@ -60,20 +60,25 @@ public class Laberinto {
         return habitacion;
     }
 
-    public Habitacion buscarHabitacionPorId(final Integer idHab) {
+    public Habitacion buscarHabitacionPorId(Integer idHab) {
 
         int i = 0;
         Habitacion habitacion = this.listaHabitaciones.get(0);
-        while(i<this.listaHabitaciones.size()){
+        while(this.listaHabitaciones.get(i).getId()!= idHab){
+                i++;
+            }
+                habitacion = this.listaHabitaciones.get(i);
+                return habitacion;
+        }
+
+        /*while(i<this.listaHabitaciones.size()){
             if(this.listaHabitaciones.get(i).getId()!= idHab){
                 i++;
             }
             else{
                 habitacion = this.listaHabitaciones.get(i);
-            }
-        }
-        return habitacion;
-    }
+            }*/
+
 
     public boolean eliminarHabitacion(Habitacion habitacion) {
         return this.listaHabitaciones.remove(habitacion);
@@ -95,8 +100,8 @@ public class Laberinto {
     }
 
     public void agregarAccionALaHabitacion(Integer idHab, Accion acc) {
-        Habitacion _buscarHabitacionPorId = this.buscarHabitacionPorId(idHab);
-        _buscarHabitacionPorId.agregarAccion(acc);
+        Habitacion buscarHabitacionPorId = this.buscarHabitacionPorId(idHab);
+        buscarHabitacionPorId.agregarAccion(acc);
     }
 
     public void marcarHabitacionInicial(int numeroHabitacion) {
@@ -104,7 +109,7 @@ public class Laberinto {
         buscarHabitacionPorId.setEsInicial();
     }
 
-    public void marcarHabitacionFinal(final int numeroHabitacion) {
+    public void marcarHabitacionFinal(int numeroHabitacion) {
         Habitacion buscarHabitacionPorId = this.buscarHabitacionPorId(numeroHabitacion);
         buscarHabitacionPorId.setEsFinal();
     }
@@ -153,5 +158,3 @@ public class Laberinto {
         this.descripcion = descripcion;
     }
 }
-
-

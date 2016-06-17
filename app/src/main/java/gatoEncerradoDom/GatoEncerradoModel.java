@@ -20,11 +20,7 @@ public class GatoEncerradoModel {
     public GatoEncerradoModel() {
 
         this.jugadores = new ArrayList<Jugador>();
-        ArrayList<Laberinto> newArrayList_1 = new ArrayList<Laberinto>();
         this.listaLaberintos = new  ArrayList<Laberinto>();
-        Jugador jugador = new Jugador(1);
-        this.jugadores.add(jugador);
-        this.jugadorActual = jugador;
         Laberinto laberinto1 = new Laberinto("La Cueva", 1);
         Laberinto laberinto2 = new Laberinto("La Mansion",2);
         Laberinto laberinto3 = new Laberinto("El Bosque ",3);
@@ -32,6 +28,9 @@ public class GatoEncerradoModel {
         this.listaLaberintos.add(laberinto2);
         this.listaLaberintos.add(laberinto3);
         this.laberintoActual = laberinto1;
+        Jugador jugador = new Jugador(1);
+        this.jugadores.add(jugador);
+        this.jugadorActual = jugador;
         Habitacion habitacion1 = new Habitacion("Habitacion1", 1,"c/algo");
         Habitacion habitacion2 = new Habitacion("Habitacion2", 2,"c/algo");
         Habitacion habitacion3 = new Habitacion("Habitacion3", 3,"c/algo");
