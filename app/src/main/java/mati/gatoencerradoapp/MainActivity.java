@@ -2,6 +2,7 @@ package mati.gatoencerradoapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -22,19 +23,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //alal
-
-        listView = (ListView) findViewById(R.id.listView1);
+/*        listView = (ListView) findViewById(R.id.listView1);
 
         ArrayList<String> nombreLaberintos = new ArrayList<String>();
-        for(LaberintoMinimizado lab:servicio.listaDeLaberintosMinimizados()){
+        ArrayList<LaberintoMinimizado> minis = servicio.listaDeLaberintosMinimizados();
+        for(LaberintoMinimizado lab : minis){
             nombreLaberintos.add(lab.getNombreLaberinto());
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,nombreLaberintos);
 
-        listView.setAdapter(adapter);
+        listView.setAdapter(adapter);*/
 
+        LaberintoAdapter labAdapter = new LaberintoAdapter(this, R.layout.listview_item_row, servicio.listaDeLaberintosMinimizados());
 
+        listView = (ListView) findViewById(R.id.listView1);
+        View header = (View) getLayoutInflater().inflate(R.layout.listview_header_row, null);
+        listView.addHeaderView(header);
+        listView.setAdapter(labAdapter);
     }
 }
