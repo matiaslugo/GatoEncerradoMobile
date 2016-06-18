@@ -34,14 +34,14 @@ public class MainActivity extends AppCompatActivity {
         listView.addHeaderView(header);
         listView.setAdapter(labAdapter);
 
-        /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1,int pos, long arg3) {
-                Intent i= new Intent(currentClass.this,secondActivity.class);
-                i.putExtra("string",Yourlist.get(pos).sms);
-                startActivity(i);
-                finish();
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                    Intent myIntent = new Intent(view.getContext(), DetalleLaberintoActivity.class);
+                    myIntent.putExtra("NOMBRE LABERINTO",servicio.listaDeLaberintosMinimizados().get(position-1).getNombreLaberinto());
+                    myIntent.putExtra("DESCRIPCION"," ALTO LABERINTO PADRE");
+                    startActivityForResult(myIntent, position);
             }
-        });*/
+        });
     }
 }
