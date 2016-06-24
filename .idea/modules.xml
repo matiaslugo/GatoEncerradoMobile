@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GatoEncerradoApp.iml" filepath="$PROJECT_DIR$/GatoEncerradoApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/GatoEncerradoMobile.iml" filepath="$PROJECT_DIR$/GatoEncerradoMobile.iml" />
-      <module fileurl="file://$PROJECT_DIR$/GatoEncerradoMobile.iml" filepath="$PROJECT_DIR$/GatoEncerradoMobile.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
