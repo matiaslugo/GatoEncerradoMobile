@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     myIntent.putExtra("NOMBRE LABERINTO",servicio.listaDeLaberintosMinimizados().get(position-1).getNombreLaberinto());
                     myIntent.putExtra("DESCRIPCION"," ALTO LABERINTO PADRE");
                     startActivityForResult(myIntent, position);
+                // algo
             }
         });
 
