@@ -55,11 +55,11 @@ public class Servicio {
         return res;
     }
 
-    public DetalleLaberinto detallesDelLaberinto(){
+    public DetalleLaberinto detallesDelLaberinto(String nombreLab){
         DetalleLaberinto res = new DetalleLaberinto();
-        res.setNombreLaberinto(this.labActual.getNombreLaberinto());
-        res.setPath(this.labActual.getRutaImagen());
-        res.setDescripcion(this.labActual.getDescripcion());
+        res.setNombreLaberinto(this.getPorNombre(nombreLab).getNombreLaberinto());
+        res.setPath(this.getPorNombre(nombreLab).getRutaImagen());
+        res.setDescripcion(this.getPorNombre(nombreLab).getDescripcion());
         return res;
 
     }
@@ -76,6 +76,15 @@ public class Servicio {
         }
 
         return res;
+    }
+
+    public Laberinto getPorNombre(String nombreLab){
+        for (int i= 0; i< listLaberinto.size();i++){
+            if(listLaberinto.get(i).getNombreLaberinto() == nombreLab){
+                return listLaberinto.get(i);
+            }
+        }
+        return null;
     }
 
 

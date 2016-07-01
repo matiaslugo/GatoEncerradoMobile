@@ -11,18 +11,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import Servicios.ItemDelInventarioMinimizado;
 import Servicios.LaberintoMinimizado;
 
 /**
- * Created by vhzanardi on 17/06/2016.
+ * Created by casa874 on 01/07/16.
  */
-public class LaberintoAdapter extends ArrayAdapter<LaberintoMinimizado> {
+public class InventarioAdapter extends ArrayAdapter<ItemDelInventarioMinimizado> {
 
     Context context;
     int layoutResourceId;
-    ArrayList<LaberintoMinimizado> data = null;
+    ArrayList<ItemDelInventarioMinimizado> data = null;
 
-    public LaberintoAdapter(Context context, int layoutResourceId, ArrayList<LaberintoMinimizado> data){
+    public InventarioAdapter(Context context, int layoutResourceId, ArrayList<ItemDelInventarioMinimizado> data){
         super(context,layoutResourceId,data);
         this.context = context;
         this.layoutResourceId = layoutResourceId;
@@ -31,22 +32,22 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMinimizado> {
 
     public View getView(int position, View converView, ViewGroup parent){
         View row = converView;
-        LaberintoHolder holder = null;
+        InventarioHolder holder = null;
 
         if(row == null){
             LayoutInflater inflader = ((Activity) context).getLayoutInflater();
             row = inflader.inflate(layoutResourceId,parent,false);
 
-            holder = new LaberintoHolder();
+            holder = new InventarioHolder();
             holder.images = (ImageView) row.findViewById(R.id.imagen);
             holder.texto = (TextView) row.findViewById(R.id.tv);
             row.setTag(holder);
         } else {
-            holder = (LaberintoHolder)row.getTag();
+            holder = (InventarioHolder) row.getTag();
         }
 
-        LaberintoMinimizado lab = data.get(position);
-        holder.texto.setText(lab.getNombreLaberinto());
+        ItemDelInventarioMinimizado item = data.get(position);
+        holder.texto.setText(item.getNombreItem());
         //int ima = Integer.parseInt(lab.getPath());
         //holder.images.setImageResource(ima);
 
@@ -55,10 +56,8 @@ public class LaberintoAdapter extends ArrayAdapter<LaberintoMinimizado> {
 
     }
 
-    static class LaberintoHolder {
+    static class InventarioHolder {
         ImageView images;
         TextView texto;
     }
-
-
 }
