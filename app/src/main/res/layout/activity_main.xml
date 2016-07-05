@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:baselineAligned="false"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="mati.gatoencerradoapp.MainActivity">
+    tools:context=".MainActivity"
+    android:weightSum="1">
 
     <TextView
         android:layout_width="match_parent"
@@ -19,25 +23,39 @@
         android:textColor="#ffffff">
     </TextView>
 
-    <ListView
-        android:id = "@+id/listView1"
+    <TextView
+        android:id="@+id/tvNombreLaberinto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30dp" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="282dp"
+        android:layout_weight="0.94">
+        <include layout="@layout/listlaberintosfragment"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
+    </FrameLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
-    </ListView>
+        android:gravity="bottom">
 
-    <Button
-        android:id="@+id/botonGestionarInventario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Gestionar Inventario"
-        android:layout_alignParentBottom="true"
-        android:background="#368724"
-        android:textColor="#ffffff">
-    </Button>
+        <Button
+            android:id="@+id/botonGestionarInventario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gestionar Inventario"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center_vertical"
+            android:background="#368724"
+            android:textColor="#ffffff"
+            android:onClick="abrirInventario">
+        </Button>
+    </LinearLayout>
 
-
-
-</RelativeLayout>
+</LinearLayout>

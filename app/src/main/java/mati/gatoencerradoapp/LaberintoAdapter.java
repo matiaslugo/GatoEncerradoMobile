@@ -10,55 +10,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
+import dominio.LaberintoAndroid;
 
-import Servicios.LaberintoMinimizado;
+public class LaberintoAdapter extends ArrayAdapter<LaberintoAndroid> {
 
-/**
- * Created by vhzanardi on 17/06/2016.
- */
-public class LaberintoAdapter extends ArrayAdapter<LaberintoMinimizado> {
-
-    Context context;
-    int layoutResourceId;
-    ArrayList<LaberintoMinimizado> data = null;
-
-    public LaberintoAdapter(Context context, int layoutResourceId, ArrayList<LaberintoMinimizado> data){
-        super(context,layoutResourceId,data);
-        this.context = context;
-        this.layoutResourceId = layoutResourceId;
-        this.data = data;
+    public LaberintoAdapter(Context context, List<LaberintoAndroid> data) {
+        super(context, R.layout.listlaberinto_laberintoandroid, data);
     }
 
-    public View getView(int position, View converView, ViewGroup parent){
-        View row = converView;
-        LaberintoHolder holder = null;
+    public View getView(int position, View converView, ViewGroup parent) {
 
-        if(row == null){
-            LayoutInflater inflader = ((Activity) context).getLayoutInflater();
-            row = inflader.inflate(layoutResourceId,parent,false);
+        LayoutInflater inflader = (LayoutInflater) (getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+        View laberintoView = converView;
+        laberintoView = inflader.inflate(R.layout.listlaberinto_laberintoandroid,parent,false);
+        final LaberintoAndroid laberintoAndroid = getItem(position);
 
-            holder = new LaberintoHolder();
-            holder.images = (ImageView) row.findViewById(R.id.imagen);
-            holder.texto = (TextView) row.findViewById(R.id.tv);
-            row.setTag(holder);
-        } else {
-            holder = (LaberintoHolder)row.getTag();
-        }
+        TextView textView = (TextView) laberintoView.findViewById(R.id.tvNombreLaberinto);
+        textView.setText(laberintoAndroid.getNombreLaberinto());
 
-        LaberintoMinimizado lab = data.get(position);
-        holder.texto.setText(lab.getNombreLaberinto());
-        //int ima = Integer.parseInt(lab.getPath());
-        //holder.images.setImageResource(ima);
-
-
-        return  row;
-
+        return  laberintoView;
     }
-
-    static class LaberintoHolder {
-        ImageView images;
-        TextView texto;
-    }
-
-
 }

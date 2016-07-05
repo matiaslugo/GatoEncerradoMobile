@@ -1,63 +1,37 @@
+
 package mati.gatoencerradoapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
-import Servicios.ItemDelInventarioMinimizado;
-import Servicios.LaberintoMinimizado;
+import dominio.ItemAndroid;
 
-/**
- * Created by casa874 on 01/07/16.
- */
-public class InventarioAdapter extends ArrayAdapter<ItemDelInventarioMinimizado> {
 
-    Context context;
-    int layoutResourceId;
-    ArrayList<ItemDelInventarioMinimizado> data = null;
+public class InventarioAdapter extends ArrayAdapter<ItemAndroid>{
 
-    public InventarioAdapter(Context context, int layoutResourceId, ArrayList<ItemDelInventarioMinimizado> data){
-        super(context,layoutResourceId,data);
-        this.context = context;
-        this.layoutResourceId = layoutResourceId;
-        this.data = data;
+    public InventarioAdapter(Context context, List<ItemAndroid> data){
+        super(context,R.layout.listview_item_row,data);
+
     }
 
     public View getView(int position, View converView, ViewGroup parent){
-        View row = converView;
-        InventarioHolder holder = null;
 
-        if(row == null){
-            LayoutInflater inflader = ((Activity) context).getLayoutInflater();
-            row = inflader.inflate(layoutResourceId,parent,false);
+        LayoutInflater inflader = (LayoutInflater)(getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE));
 
-            holder = new InventarioHolder();
-            holder.images = (ImageView) row.findViewById(R.id.imagen);
-            holder.texto = (TextView) row.findViewById(R.id.tv);
-            row.setTag(holder);
-        } else {
-            holder = (InventarioHolder) row.getTag();
-        }
+        View inventarioView = inflader.inflate(R.layout.listview_item_row,parent,false);
+        final ItemAndroid itemAndroid = getItem(position);
 
-        ItemDelInventarioMinimizado item = data.get(position);
-        holder.texto.setText(item.getNombreItem());
-        //int ima = Integer.parseInt(lab.getPath());
-        //holder.images.setImageResource(ima);
+        TextView textView = (TextView) inventarioView.findViewById(R.id.nombreItem);
+        textView.setText(itemAndroid.getNombreItem());
 
-
-        return  row;
-
+        return  inventarioView;
     }
 
-    static class InventarioHolder {
-        ImageView images;
-        TextView texto;
-    }
 }
+
